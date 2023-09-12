@@ -1,7 +1,9 @@
+import { Aluno } from 'src/alunos/entities/aluno.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -31,6 +33,9 @@ export class Professor {
 
   @Column({ nullable: false, length: 255 })
   password: string;
+
+  @OneToMany(() => Aluno, (aluno) => aluno.professor)
+  aluno: Aluno;
 
   @CreateDateColumn({
     type: 'timestamp',

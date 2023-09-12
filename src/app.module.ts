@@ -4,9 +4,14 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TypeOrmConfigService } from './database/typeorm-config';
 import { ProfessoresModule } from './professores/professores.module';
+import { AlunosModule } from './alunos/alunos.module';
 
 @Module({
-  imports: [TypeOrmModule.forRootAsync({ useClass: TypeOrmConfigService }), ProfessoresModule],
+  imports: [
+    TypeOrmModule.forRootAsync({ useClass: TypeOrmConfigService }),
+    ProfessoresModule,
+    AlunosModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
