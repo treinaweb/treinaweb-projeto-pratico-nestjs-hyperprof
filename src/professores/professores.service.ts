@@ -1,22 +1,48 @@
 import { Injectable } from '@nestjs/common';
-import { CreateProfessoreDto } from './dto/create-professore.dto';
-import { UpdateProfessoreDto } from './dto/update-professore.dto';
+import { ProfessorMapperImpl } from './mappers/professor.mapper-impl';
+import { Like, Repository } from 'typeorm';
+import { Professor } from './entities/professor.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { ProfessorNotFoundException } from './exceptions/professor-not-found-exception';
 
 @Injectable()
 export class ProfessoresService {
-  create(createProfessoreDto: CreateProfessoreDto) {
+  constructor(
+    private professorMapper: ProfessorMapperImpl,
+    @InjectRepository(Professor)
+    private professorRepository: Repository<Professor>,
+  ) {}
+  create() {
     return 'This action adds a new professore';
   }
 
-  findAll() {
-    return `This action returns all professores`;
+  async findAll(param: string) {
+    if (!param) param = '';
+    const professores = await this.professorRepository.find({
+      where: {
+        descricao: Like(`%${param}%`),
+      },
+    });
+
+    return professores.map((professor) =>
+      this.professorMapper.toProfessorResponse(professor),
+    );
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} professore`;
+  async findOne(id: number) {
+    try {
+      const professor = await this.professorRepository.findOneByOrFail({
+        id: id,
+      });
+      return this.professorMapper.toProfessorResponse(professor);
+    } catch (error) {
+      if (error.name === 'EntityNotFoundError') {
+        throw new ProfessorNotFoundException();
+      }
+    }
   }
 
-  update(id: number, updateProfessoreDto: UpdateProfessoreDto) {
+  update(id: number) {
     return `This action updates a #${id} professore`;
   }
 

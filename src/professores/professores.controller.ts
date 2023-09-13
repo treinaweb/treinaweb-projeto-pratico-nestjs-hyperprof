@@ -1,42 +1,32 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Get, Param, Delete, Query } from '@nestjs/common';
 import { ProfessoresService } from './professores.service';
-import { CreateProfessoreDto } from './dto/create-professore.dto';
-import { UpdateProfessoreDto } from './dto/update-professore.dto';
 
-@Controller('professores')
+@Controller('api/professores')
 export class ProfessoresController {
   constructor(private readonly professoresService: ProfessoresService) {}
 
-  @Post()
+  /*   @Post()
   create(@Body() createProfessoreDto: CreateProfessoreDto) {
     return this.professoresService.create(createProfessoreDto);
-  }
+  } */
 
   @Get()
-  findAll() {
-    return this.professoresService.findAll();
+  async findAll(@Query('q') param: string) {
+    return await this.professoresService.findAll(param);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.professoresService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    return await this.professoresService.findOne(+id);
   }
 
-  @Patch(':id')
+  /*   @Patch(':id')
   update(
     @Param('id') id: string,
     @Body() updateProfessoreDto: UpdateProfessoreDto,
   ) {
     return this.professoresService.update(+id, updateProfessoreDto);
-  }
+  } */
 
   @Delete(':id')
   remove(@Param('id') id: string) {
