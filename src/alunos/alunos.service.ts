@@ -1,11 +1,29 @@
 import { Injectable } from '@nestjs/common';
-import { CreateAlunoDto } from './dto/create-aluno.dto';
-import { UpdateAlunoDto } from './dto/update-aluno.dto';
+import { AlunoRequestDto } from './dto/aluno-request.dto';
+import { Repository } from 'typeorm';
+import { Aluno } from './entities/aluno.entity';
+import { Professor } from 'src/professores/entities/professor.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { AlunoMapperImpl } from './mappers/aluno.mapper-impl';
 
 @Injectable()
 export class AlunosService {
-  create(createAlunoDto: CreateAlunoDto) {
-    return 'This action adds a new aluno';
+  constructor(
+    @InjectRepository(Aluno)
+    private alunoRepository: Repository<Aluno>,
+    @InjectRepository(Professor)
+    private professorRepository: Repository<Professor>,
+    private alunoMapper: AlunoMapperImpl,
+  ) {}
+
+  async create(alunoRequestDto: AlunoRequestDto, professorId: number) {
+    const professor = await this.professorRepository.findOneBy({
+      id: professorId,
+    });
+    const aluno = this.alunoMapper.toAlunoEntity(alunoRequestDto);
+    aluno.professor = professor;
+    const alunoSalvo = await this.alunoRepository.save(aluno);
+    return this.alunoMapper.toAlunoResponse(alunoSalvo);
   }
 
   findAll() {
@@ -16,9 +34,9 @@ export class AlunosService {
     return `This action returns a #${id} aluno`;
   }
 
-  update(id: number, updateAlunoDto: UpdateAlunoDto) {
+  /*   update(id: number, updateAlunoDto: UpdateAlunoDto) {
     return `This action updates a #${id} aluno`;
-  }
+  } */
 
   remove(id: number) {
     return `This action removes a #${id} aluno`;
