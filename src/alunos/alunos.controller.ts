@@ -1,12 +1,22 @@
-import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Delete,
+  UseFilters,
+} from '@nestjs/common';
 import { AlunosService } from './alunos.service';
 import { AlunoRequestDto } from './dto/aluno-request.dto';
+import { ValidationExceptionFilter } from 'src/common/validation-exception.filter';
 
 @Controller('api')
 export class AlunosController {
   constructor(private readonly alunosService: AlunosService) {}
 
   @Post('/professores/:id/alunos')
+  @UseFilters(ValidationExceptionFilter)
   create(
     @Body() alunoRequestDto: AlunoRequestDto,
     @Param('id') professorId: number,

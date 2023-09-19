@@ -17,13 +17,17 @@ export class AlunosService {
   ) {}
 
   async create(alunoRequestDto: AlunoRequestDto, professorId: number) {
-    const professor = await this.professorRepository.findOneBy({
-      id: professorId,
-    });
-    const aluno = this.alunoMapper.toAlunoEntity(alunoRequestDto);
-    aluno.professor = professor;
-    const alunoSalvo = await this.alunoRepository.save(aluno);
-    return this.alunoMapper.toAlunoResponse(alunoSalvo);
+    try {
+      const professor = await this.professorRepository.findOneBy({
+        id: professorId,
+      });
+      const aluno = this.alunoMapper.toAlunoEntity(alunoRequestDto);
+      aluno.professor = professor;
+      const alunoSalvo = await this.alunoRepository.save(aluno);
+      return this.alunoMapper.toAlunoResponse(alunoSalvo);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   findAll() {
