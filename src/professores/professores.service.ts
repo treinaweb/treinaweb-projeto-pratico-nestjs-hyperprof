@@ -4,6 +4,7 @@ import { Like, Repository } from 'typeorm';
 import { Professor } from './entities/professor.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ProfessorNotFoundException } from './exceptions/professor-not-found-exception';
+import { ProfessorRequestDto } from './dto/professor-request.dto';
 
 @Injectable()
 export class ProfessoresService {
@@ -12,8 +13,11 @@ export class ProfessoresService {
     @InjectRepository(Professor)
     private professorRepository: Repository<Professor>,
   ) {}
-  create() {
-    return 'This action adds a new professore';
+  async create(professorRequestoDto: ProfessorRequestDto) {
+    const professor =
+      this.professorMapper.toProfessorEntity(professorRequestoDto);
+    const professorSalvo = await this.professorRepository.save(professor);
+    return this.professorMapper.toProfessorResponse(professorSalvo);
   }
 
   async findAll(param: string) {

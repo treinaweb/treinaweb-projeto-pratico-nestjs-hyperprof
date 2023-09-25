@@ -1,14 +1,26 @@
-import { Controller, Get, Param, Delete, Query } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Param,
+  Delete,
+  Query,
+  Post,
+  Body,
+  UseFilters,
+} from '@nestjs/common';
 import { ProfessoresService } from './professores.service';
+import { ProfessorRequestDto } from './dto/professor-request.dto';
+import { ValidationExceptionFilter } from 'src/common/validation-exception.filter';
 
 @Controller('api/professores')
 export class ProfessoresController {
   constructor(private readonly professoresService: ProfessoresService) {}
 
-  /*   @Post()
-  create(@Body() createProfessoreDto: CreateProfessoreDto) {
-    return this.professoresService.create(createProfessoreDto);
-  } */
+  @Post()
+  @UseFilters(ValidationExceptionFilter)
+  create(@Body() professorDto: ProfessorRequestDto) {
+    return this.professoresService.create(professorDto);
+  }
 
   @Get()
   async findAll(@Query('q') param: string) {

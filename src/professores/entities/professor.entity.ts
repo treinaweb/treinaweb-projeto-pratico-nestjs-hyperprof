@@ -16,7 +16,7 @@ export class Professor {
   @Column({ nullable: false, length: 100 })
   nome: string;
 
-  @Column({ nullable: false, length: 255 })
+  @Column({ nullable: false, length: 255, unique: true })
   email: string;
 
   @Column()

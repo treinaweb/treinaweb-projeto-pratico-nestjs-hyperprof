@@ -1,5 +1,12 @@
 import { Expose } from 'class-transformer';
-import { IsDateString, IsEmail, IsNotEmpty, Length } from 'class-validator';
+import {
+  IsDateString,
+  IsEmail,
+  IsNotEmpty,
+  Length,
+  Validate,
+} from 'class-validator';
+import { DataNoFuturo } from 'src/validators/validator-date';
 
 export class AlunoRequestDto {
   @IsNotEmpty({ message: 'Nome não pode ser vazio' })
@@ -12,6 +19,7 @@ export class AlunoRequestDto {
   email: string;
 
   @IsDateString({}, { message: 'Data Inválida' })
+  @Validate(DataNoFuturo)
   @Expose({ name: 'data_aula' })
   dataAula: Date;
 }
