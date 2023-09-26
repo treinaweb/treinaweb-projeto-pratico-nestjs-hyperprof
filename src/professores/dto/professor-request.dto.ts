@@ -6,7 +6,9 @@ import {
   Length,
   Max,
   Min,
+  Validate,
 } from 'class-validator';
+import { IsEmailExists } from 'src/validators/validator-email';
 
 export class ProfessorRequestDto {
   @IsString({ message: 'Nome deve ser string' })
@@ -15,7 +17,8 @@ export class ProfessorRequestDto {
   nome: string;
 
   @IsEmail({}, { message: 'Email inválido' })
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'Email não pode ser vazio' })
+  @Validate(IsEmailExists)
   email: string;
 
   @Max(100)
