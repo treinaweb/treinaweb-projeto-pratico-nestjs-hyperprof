@@ -6,12 +6,10 @@ import {
   Length,
   Max,
   Min,
-  Validate,
 } from 'class-validator';
-import { IsEmailExists } from 'src/validators/validator-email';
 import { Match } from 'src/validators/validator-password';
 
-export class ProfessorRequestDto {
+export class ProfessorUpdateDto {
   @IsString({ message: 'Nome deve ser string' })
   @Length(3, 100, { message: 'Nome deve ter de 3 até 100 caracteres' })
   @IsNotEmpty({ message: 'Nome não pode ser vazio' })
@@ -19,7 +17,6 @@ export class ProfessorRequestDto {
 
   @IsEmail({}, { message: 'Email inválido' })
   @IsNotEmpty({ message: 'Email não pode ser vazio' })
-  @Validate(IsEmailExists)
   email: string;
 
   @Max(100)

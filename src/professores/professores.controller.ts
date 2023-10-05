@@ -2,15 +2,20 @@ import {
   Controller,
   Get,
   Param,
-  Delete,
   Query,
   Post,
   Body,
   UseFilters,
+  UseGuards,
+  Put,
 } from '@nestjs/common';
 import { ProfessoresService } from './professores.service';
 import { ProfessorRequestDto } from './dto/professor-request.dto';
 import { ValidationExceptionFilter } from 'src/common/validation-exception.filter';
+import { AuthGuard } from '@nestjs/passport';
+import { Professor } from './entities/professor.entity';
+import { GetUser } from 'src/auth/decorators/get-user.decorator';
+import { ProfessorUpdateDto } from './dto/professor-update.dto';
 
 @Controller('api/professores')
 export class ProfessoresController {
@@ -32,16 +37,18 @@ export class ProfessoresController {
     return await this.professoresService.findOne(+id);
   }
 
-  /*   @Patch(':id')
-  update(
-    @Param('id') id: string,
-    @Body() updateProfessoreDto: UpdateProfessoreDto,
+  @Put()
+  @UseGuards(AuthGuard('jwt'))
+  @UseFilters(ValidationExceptionFilter)
+  async update(
+    @GetUser() user: Professor,
+    @Body() updateProfessorDto: ProfessorUpdateDto,
   ) {
-    return this.professoresService.update(+id, updateProfessoreDto);
-  } */
+    return this.professoresService.update(user.id, updateProfessorDto);
+  }
 
-  @Delete(':id')
+  /*   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.professoresService.remove(+id);
-  }
+  } */
 }
