@@ -8,6 +8,7 @@ import { AlunosModule } from './alunos/alunos.module';
 import { AuthModule } from './auth/auth.module';
 import { MeModule } from './me/me.module';
 import { TokenInvalidoModule } from './token-invalido/token-invalido.module';
+import { FotoModule } from './foto/foto.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { TokenInvalidoModule } from './token-invalido/token-invalido.module';
     AuthModule,
     MeModule,
     TokenInvalidoModule,
+    FotoModule,
   ],
   controllers: [AppController],
   providers: [AppService],
