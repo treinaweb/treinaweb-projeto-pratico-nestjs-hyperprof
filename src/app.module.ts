@@ -13,8 +13,8 @@ import { FotoModule } from './foto/foto.module';
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({ useClass: TypeOrmConfigService }),
-    ProfessoresModule,
     AlunosModule,
+    ProfessoresModule,
     AuthModule,
     MeModule,
     TokenInvalidoModule,

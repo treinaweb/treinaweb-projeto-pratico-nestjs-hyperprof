@@ -30,6 +30,15 @@ export class AlunosService {
     }
   }
 
+  async findByProfessor(professor: Professor) {
+    const alunos = await this.alunoRepository.find({
+      relations: { professor: true },
+      where: { professor: { id: professor.id } },
+    });
+
+    return alunos.map((aluno) => this.alunoMapper.toAlunoResponse(aluno));
+  }
+
   findAll() {
     return `This action returns all alunos`;
   }
