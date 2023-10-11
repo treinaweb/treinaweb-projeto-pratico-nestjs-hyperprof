@@ -14,7 +14,10 @@ export class Aluno {
   @PrimaryGeneratedColumn('increment')
   id: number;
 
-  @ManyToOne(() => Professor, (professor) => professor.aluno)
+  @ManyToOne(() => Professor, (professor) => professor.aluno, {
+    onDelete: 'CASCADE',
+    orphanedRowAction: 'delete',
+  })
   @JoinColumn({ name: 'professor_id' })
   professor: Professor;
 

@@ -3,7 +3,6 @@ import {
   Post,
   Body,
   Param,
-  Delete,
   UseFilters,
   UseGuards,
   Get,
@@ -32,15 +31,5 @@ export class AlunosController {
     @Param('id') professorId: number,
   ) {
     return this.alunosService.create(alunoRequestDto, professorId);
-  }
-
-  /*  @Get()
-  findAll() {
-    return this.alunosService.findAll();
-  } */
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.alunosService.remove(+id);
   }
 }

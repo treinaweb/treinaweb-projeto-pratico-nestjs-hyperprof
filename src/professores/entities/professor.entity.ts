@@ -36,7 +36,9 @@ export class Professor {
   @Column({ nullable: false, length: 255 })
   password: string;
 
-  @OneToMany(() => Aluno, (aluno) => aluno.professor)
+  @OneToMany(() => Aluno, (aluno) => aluno.professor, {
+    cascade: ['remove'],
+  })
   aluno: Aluno;
 
   @CreateDateColumn({

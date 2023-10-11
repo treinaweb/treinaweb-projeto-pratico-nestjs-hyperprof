@@ -8,6 +8,8 @@ import {
   UseFilters,
   UseGuards,
   Put,
+  Delete,
+  HttpCode,
 } from '@nestjs/common';
 import { ProfessoresService } from './professores.service';
 import { ProfessorRequestDto } from './dto/professor-request.dto';
@@ -16,6 +18,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { Professor } from './entities/professor.entity';
 import { GetUser } from 'src/auth/decorators/get-user.decorator';
 import { ProfessorUpdateDto } from './dto/professor-update.dto';
+import { ProfessorExceptionFilter } from './exceptions/professor-exception.filter';
 
 @Controller('api/professores')
 export class ProfessoresController {
@@ -47,8 +50,11 @@ export class ProfessoresController {
     return this.professoresService.update(user.id, updateProfessorDto);
   }
 
-  /*   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.professoresService.remove(+id);
-  } */
+  @Delete()
+  @HttpCode(204)
+  @UseFilters(ProfessorExceptionFilter)
+  @UseGuards(AuthGuard('jwt'))
+  remove(@GetUser() user: Professor) {
+    return this.professoresService.remove(user.id);
+  }
 }

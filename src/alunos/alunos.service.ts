@@ -38,20 +38,4 @@ export class AlunosService {
 
     return alunos.map((aluno) => this.alunoMapper.toAlunoResponse(aluno));
   }
-
-  findAll() {
-    return `This action returns all alunos`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} aluno`;
-  }
-
-  /*   update(id: number, updateAlunoDto: UpdateAlunoDto) {
-    return `This action updates a #${id} aluno`;
-  } */
-
-  remove(id: number) {
-    return `This action removes a #${id} aluno`;
-  }
 }

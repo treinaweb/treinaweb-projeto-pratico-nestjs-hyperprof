@@ -79,8 +79,8 @@ export class ProfessoresService {
     return { message: 'Atualização realizada com sucesso' };
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} professore`;
+  async remove(id: number) {
+    return await this.professorRepository.delete(id);
   }
 
   private async hashSenha(password: string): Promise<string> {
