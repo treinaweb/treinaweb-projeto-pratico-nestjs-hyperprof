@@ -1,73 +1,17 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
-
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
-
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Installation
-
-```bash
-$ npm install
-```
-
-## Running the app
-
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
-```
-
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+#### Lista de commits
+Aula | Commit | Link 
+------ | ------ | ------ 
+Aula 3 | Configurando projeto | [Download](https://github.com/treinaweb/treinaweb-projeto-pratico-nestjs-hyperprof/archive/2b9adea76d595b256d50b206dffb739c0776058a.zip) 
+Aula 3 | Configurando TypeORM | [Download](https://github.com/treinaweb/treinaweb-projeto-pratico-nestjs-hyperprof/archive/f91a98f284b872c2a3a358a0abcdb2519815f4f0.zip) 
+Aula 4 | criando entidade professores | [Download](https://github.com/treinaweb/treinaweb-projeto-pratico-nestjs-hyperprof/archive/2ea510de79d7e503f5015c68ce6f3e06741a5777.zip) 
+Aula 4 | Implementação entidade e migration alunos | [Download](https://github.com/treinaweb/treinaweb-projeto-pratico-nestjs-hyperprof/archive/79d6e504171dd391538c6d2779d8d6ac70bcc435.zip) 
+Aula 5 | detalhes e exceção professor | [Download](https://github.com/treinaweb/treinaweb-projeto-pratico-nestjs-hyperprof/archive/f13e5f5c2afcc9b04d9ebd9e61c62cab5bb9471f.zip) 
+Aula 6 | cadastro aula-aluno | [Download](https://github.com/treinaweb/treinaweb-projeto-pratico-nestjs-hyperprof/archive/e17f59c6930eb331e8486bbf11da9bd5cae2bec5.zip) 
+Aula 6 | validação aluno-aula | [Download](https://github.com/treinaweb/treinaweb-projeto-pratico-nestjs-hyperprof/archive/db3c64ed93f58b65e0b4fa0b7f82efc1790a26c7.zip) 
+Aula 7 | validações professor | [Download](https://github.com/treinaweb/treinaweb-projeto-pratico-nestjs-hyperprof/archive/d425d5b52bc84160c0c02ff5247f27ea1daab6d8.zip) 
+Aula 7 | validação email | [Download](https://github.com/treinaweb/treinaweb-projeto-pratico-nestjs-hyperprof/archive/ad49e28e3bdba1ce28538450b61e70ee1df800e1.zip) 
+Aula 7 | att professor | [Download](https://github.com/treinaweb/treinaweb-projeto-pratico-nestjs-hyperprof/archive/2fc0821d1e4fea05dbe707778d72706bb974e119.zip) 
+Aula 9 | validação de foto perfil | [Download](https://github.com/treinaweb/treinaweb-projeto-pratico-nestjs-hyperprof/archive/d68f9f9e3446b60a005b73bcecbc39e3a5a1ab02.zip) 
+Aula 10 | implementando lista de alunos | [Download](https://github.com/treinaweb/treinaweb-projeto-pratico-nestjs-hyperprof/archive/4eef11d4f19b7f9ed906f2e805b9323f65455113.zip) 
+Aula 11 | implementando exclusao de professor | [Download](https://github.com/treinaweb/treinaweb-projeto-pratico-nestjs-hyperprof/archive/1d74cf87f5bb6433e1f1afa6410b345af40fc0b8.zip) 
+Aula 12 | ajustes finais do projeto | [Download](https://github.com/treinaweb/treinaweb-projeto-pratico-nestjs-hyperprof/archive/474c84f8239b8cbcd415f4cddd0dd94defd866a0.zip) 
