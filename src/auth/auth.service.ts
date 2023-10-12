@@ -35,12 +35,12 @@ export class AuthService {
   async gerarToken(payload: Professor) {
     const accessToken = this.jwtService.sign(
       { email: payload.email },
-      { secret: 'treinaweb', expiresIn: '120s' },
+      { secret: process.env.SECRET, expiresIn: '120s' },
     );
 
     const refreshToken = this.jwtService.sign(
       { email: payload.email },
-      { secret: 'refresh', expiresIn: '240s' },
+      { secret: process.env.REFRESH, expiresIn: '240s' },
     );
 
     return { token: accessToken, refresh_token: refreshToken };
@@ -68,6 +68,9 @@ export class AuthService {
     }
 
     try {
+      this.jwtService.verify(refreshToken, {
+        secret: process.env.REFRESH,
+      });
       const token = await this.token.findOne(refreshToken);
       if (!token) {
         await this.token.create(refreshToken);
@@ -83,6 +86,7 @@ export class AuthService {
     const bearerTokenExists = await this.token.findOne(bearerToken);
     if (bearerTokenExists) throw new UnauthorizedException();
 
+    await this.verificarRefreshToken(refreshToken);
     const tokenExist = await this.token.findOne(refreshToken.refreshToken);
     if (!tokenExist) {
       await this.token.create(refreshToken.refreshToken);

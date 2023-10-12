@@ -7,11 +7,11 @@ import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 export class TypeOrmConfigService implements TypeOrmOptionsFactory {
   createTypeOrmOptions(): TypeOrmModuleOptions {
     return {
-      database: 'hyperprof',
-      username: 'root',
-      password: 'treinaweb',
-      host: 'localhost',
-      port: 3306,
+      database: process.env.DATABASE,
+      username: process.env.USERNAME,
+      password: process.env.PASSWORD,
+      host: process.env.HOST,
+      port: parseInt(process.env.DB_PORT),
       synchronize: false,
       type: 'mysql',
       entities: [join(__dirname, '..', '**/*entity.{ts,js}')],

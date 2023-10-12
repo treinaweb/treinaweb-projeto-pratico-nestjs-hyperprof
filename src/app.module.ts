@@ -9,9 +9,13 @@ import { AuthModule } from './auth/auth.module';
 import { MeModule } from './me/me.module';
 import { TokenInvalidoModule } from './token-invalido/token-invalido.module';
 import { FotoModule } from './foto/foto.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
     TypeOrmModule.forRootAsync({ useClass: TypeOrmConfigService }),
     AlunosModule,
     ProfessoresModule,

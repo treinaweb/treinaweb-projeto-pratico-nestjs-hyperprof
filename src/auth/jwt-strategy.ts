@@ -14,14 +14,16 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
     private tokenService: TokenInvalidoService,
   ) {
     super({
-      secretOrKey: 'treinaweb',
+      secretOrKey: process.env.SECRET,
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
     });
   }
 
   async validate(payload: JwtPayload) {
-    const bearerToken = this.jwtService.sign(payload, { secret: 'treinaweb' });
+    const bearerToken = this.jwtService.sign(payload, {
+      secret: process.env.SECRET,
+    });
     const tokenInvalido = await this.tokenService.findOne(bearerToken);
     const { email } = payload;
     const user = await this.userService.findOneByEmail(email);

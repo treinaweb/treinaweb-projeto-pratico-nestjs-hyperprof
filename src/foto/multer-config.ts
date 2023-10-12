@@ -3,19 +3,21 @@ import { BadRequestException } from '@nestjs/common';
 import * as multerS3 from 'multer-s3';
 import * as path from 'path';
 import { v4 as uuidv4 } from 'uuid';
+import { config } from 'dotenv';
 
+config({ path: '.env' });
 const s3Config = new S3Client({
-  region: 'sa-east-1',
+  region: process.env.REGION,
   credentials: {
-    accessKeyId: 'AKIAXTVE2Q4BYZK7V2MV',
-    secretAccessKey: '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',
+    accessKeyId: process.env.ACCESS_KEY_ID,
+    secretAccessKey: process.env.SECRET_ACCESS_KEY,
   },
 });
 
 export const multerconfig = {
   storage: multerS3({
     s3: s3Config,
-    bucket: 'hyperprof',
+    bucket: process.env.BUCKET,
     contentType: multerS3.AUTO_CONTENT_TYPE,
     acl: 'public-read',
     key: (req, file, cb) => {
